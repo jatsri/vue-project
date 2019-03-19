@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="cart">
-            <p>Cart({{cart.length}})</p>
+            <p>Cart({{cartCount}})</p>
         </div>
         <Product :premium="premium" @add-to-cart="updateCart"></Product>
     </div>
@@ -17,13 +17,17 @@
         },
         data() {
             return {
-                premium: true,
-                cart: []
+                premium: this.$store.state.premium
             }
         },
         methods: {
             updateCart(id) {
-                this.cart.push(id)
+                return this.$store.dispatch('updateCart', { id })
+            }
+        },
+        computed: {
+            cartCount() {
+                return this.$store.getters.getCartCount
             }
         }
     }
