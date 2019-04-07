@@ -7,15 +7,7 @@
               </span>
         </div>
         <div v-show="selectedTab === 'Reviews'">
-            <h2>Reviews</h2>
-            <p v-if="!reviews.length">There are no reviews yet.</p>
-            <ul v-else>
-                <li v-for="review in reviews">
-                    <p>{{review.name}}</p>
-                    <p>{{review.rating}}</p>
-                    <p>{{review.review}}</p>
-                </li>
-            </ul>
+            <Reviews :reviews="reviews"/>
         </div>
         <ProductReview  v-show="selectedTab === 'Make a Review'" />
     </div>
@@ -23,26 +15,37 @@
 
 <script>
     import ProductReview from './ProductReview.vue';
+    import Reviews from './Reviews.vue';
+    import eventBus from '../../lib/eventBus';
+
     export default {
         name: "ProductTabs",
-        props: {
-            reviews: {
-                type: Array,
-                required: true
-            }
-        },
         components: {
-            ProductReview
+            ProductReview,
+            Reviews
         },
         data() {
             return {
                 tabs: ['Reviews', 'Make a Review'],
-                selectedTab: 'Reviews'
+                selectedTab: 'Reviews',
+                reviews: this.$store.getters.getReviews
             }
+        },
+        mounted() {
+            eventBus.$on('review-submitted', productReview => {
+                return this.$store.dispatch('addReview', productReview)
+            })
         }
     }
 </script>
 
 <style scoped>
+    .activeTab {
+        color: blue;
+    }
+
+    .tab {
+        cursor: pointer;
+    }
 
 </style>

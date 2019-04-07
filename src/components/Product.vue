@@ -17,14 +17,13 @@
                  @mouseover="updateProduct(index)">
             </div>
             <button v-on:click="addToCart" :disabled="!inStock  ">Add to cart</button>
-            <ProductTabs :reviews="reviews"></ProductTabs>
         </div>
     </div>
 </template>
 
 <script>
     import ProductTabs from './ProductTabs.vue';
-    import eventBus from '../lib/eventBus';
+
     export default {
         name: "Product",
         props: {
@@ -48,17 +47,16 @@
                     {
                         variantId: 2234,
                         variantColor: "green",
-                        variantImage: "http://localhost:63342/vue-project/assets/green-socks.png?_ijt=gnn5dukm5kot1o7ppai38do7os",
+                        variantImage: require('../assets/green-socks.png'),
                         variantQuantity: 10
                     },
                     {
                         variantId: 2235,
                         variantColor: "blue",
-                        variantImage: "./assets/grey-socks.png",
+                        variantImage: require('../assets/grey-socks.png'),
                         variantQuantity: 0
                     }
-                ],
-                reviews: []
+                ]
             }
         },
         methods: {
@@ -67,9 +65,6 @@
             },
             updateProduct(index) {
                 this.selectedVariant = index;
-            },
-            addReview(productReview) {
-                this.reviews.push( )
             }
         },
         computed: {
@@ -88,15 +83,24 @@
                 }
                 return 2.90;
             }
-        },
-        mounted() {
-            eventBus.$on('review-submitted', productReview => {
-                this.reviews.push(productReview)
-            })
         }
     }
 </script>
 
 <style scoped>
+.product-image {
+    width: 200px;
+    height: 200px;
+}
 
+img {
+    width: 100%;
+}
+
+.color-box {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    cursor: pointer;
+}
 </style>

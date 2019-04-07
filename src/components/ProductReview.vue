@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import eventBus from '../lib/eventBus';
+    import eventBus from '../../lib/eventBus';
 
     export default {
         name: "ProductReview",
@@ -59,7 +59,6 @@
                     this.review = null
                     this.rating = null
                 } else {
-                    console.log('frfr');
                     if(!this.rating) this.errors.push('Rating required');
                     if(!this.name) this.errors.push('Name required');
                     if(!this.review) this.errors.push('Review required');

@@ -1,10 +1,8 @@
-'use strict'
-const { VueLoaderPlugin } = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader');
+
 module.exports = {
+    entry: './entry-client.js',
     mode: 'development',
-    entry: [
-        './main.js'
-    ],
     module: {
         rules: [
             {
@@ -30,5 +28,20 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin()
-    ]
+    ],
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        },
+        extensions: ['*', '.js', '.vue', '.json']
+    },
+    devServer: {
+        historyApiFallback: true,
+        noInfo: true,
+        overlay: true
+    },
+    performance: {
+        hints: false
+    },
+    devtool: '#eval-source-map'
 }
