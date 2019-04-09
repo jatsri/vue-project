@@ -8,7 +8,7 @@ export function createRouter () {
     return new Router({
         mode: 'history',
         routes: [
-            { path: '/home', component: () => import('./ProductIndex.vue') },
+            { path: '/', component: () => import('./components/ProductIndex.vue') },
             { path: '/review', component: () => import('./components/ProductTabs.vue') }
         ]
     })

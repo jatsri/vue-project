@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <p>
-            <router-link to="/home">Home</router-link>
+        <p class="routes">
+            <router-link to="/">Home</router-link>
             <router-link to="/review">Review</router-link>
         </p>
         <router-view></router-view>
@@ -10,10 +10,13 @@
 
 <script>
     export default {
-        name: "App1"
+        name: "App"
     }
 </script>
 
 <style scoped>
+    .routes {
+        display: none;
+    }
 
 </style>

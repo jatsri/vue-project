@@ -1,17 +1,17 @@
 <template>
     <div>
+        <Product :premium="premium" @add-to-cart="updateCart"></Product>
         <div class="cart">
             <p>Cart({{cartCount}})</p>
         </div>
-        <Product :premium="premium" @add-to-cart="updateCart"></Product>
     </div>
 </template>
 
 <script>
-    import Product from './components/Product.vue'
+    import Product from './Product.vue'
 
     export default {
-        name: "App",
+        name: "ProductIndex",
         components: {
             Product
         },
@@ -34,5 +34,10 @@
 </script>
 
 <style scoped>
+    .cart {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
 
 </style>

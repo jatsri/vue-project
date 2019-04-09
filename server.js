@@ -31,8 +31,10 @@ server.get('*', (req, res) => {
         if(err) {
             console.log('Error', err);
         }
-        res.end(html)
+        res.end(html);
     })
 })
 
-server.listen(8080);
+server.listen(8080, () => {
+    console.log('Listening on 8080');
+});

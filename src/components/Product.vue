@@ -69,7 +69,7 @@
         },
         computed: {
             title() {
-                return this.brand + '' + this.product
+                return this.brand + ' ' + this.product
             },
             image() {
                 return this.variants[this.selectedVariant].variantImage
@@ -91,6 +91,7 @@
 .product-image {
     width: 200px;
     height: 200px;
+    float: left;
 }
 
 img {
@@ -103,4 +104,10 @@ img {
     margin-top: 5px;
     cursor: pointer;
 }
+    button {
+        margin-top: 20px;
+    }
+    .product-info {
+        margin-left: 500px;
+    }
 </style>
